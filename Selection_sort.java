@@ -29,6 +29,5 @@ public class Selection_sort {
     public static void main(String[] args) {
         int[] array = new int[]{5, 3, 6, 2, 10, 100, 12,15,17,1,3,122,1567};
         System.out.println(selectionSort(array));
-        System.out.println("Hello world");  //iuhiuhiuhuiiuhui
     }
 }
