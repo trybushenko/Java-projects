@@ -1,8 +1,8 @@
 package Lab5;
 
 
-public class Word {
-    private  Letter[] word;
+public class Word extends SentenceElement{
+    private final Letter[] word;
 
     public Word(Letter[] word) {
         this.word = word;
