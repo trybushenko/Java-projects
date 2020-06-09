@@ -1,7 +1,7 @@
 package Lab5;
 
 public class Sentence {
-    private SentenceElement[] sentenceElements;
+    private final SentenceElement[] sentenceElements;
     private static final String punctuationSymbols = ",.!?;";
 
     public Sentence(SentenceElement[] sentenceElements) {
