@@ -32,7 +32,17 @@ public class Text {
         }
         return Arrays.toString(new_text);
     }
-//    public static String delete_previous_entrances(Sentence[] sentences) {
-//
-//    }
+    public static String delete_previous_entrances(Text sentences) {
+        String string = sentences.toString();
+        String[] old_split_text = string.split(" ");
+        String[] new_text = new String[old_split_text.length];
+        for (int i = 0; i < old_split_text.length; i++) {
+            new_text[i] = old_split_text[i].replace(old_split_text[i].charAt(old_split_text[i].length() - 1), Character.MIN_VALUE);
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String raw: new_text) {
+            stringBuilder.append(raw).append(" ");
+        }
+        return stringBuilder.toString();
+    }
 }
