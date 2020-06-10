@@ -37,6 +37,8 @@ public class Main {
         bottle_of_coffees[0] = bottle_of_coffee;
         bottle_of_coffees[1] = bottle_of_coffee1;
         bottle_of_coffees[2] = bottle_of_coffee2;
+        //sorting by price
+        Arrays.sort(bottle_of_coffees, Comparator.comparing(Bottle_of_coffee::getPriceForBottle));
         // creating a calculator
         Calculator calculator = new Calculator();
         // calculating if I can afford all the bottles according to my budget. Output: Yes, I can contain all of them
@@ -51,13 +53,10 @@ public class Main {
         //adding the fourth element to the array of bottles
         GrowArray growArray = new GrowArray();
         bottle_of_coffees = growArray.growArray(bottle_of_coffees, bottle_of_coffee3);
-        for (Bottle_of_coffee bottle_of_coffee10: bottle_of_coffees) {
-            System.out.println(bottle_of_coffee10);
-        }
         Arrays.sort(bottle_of_coffees, Comparator.comparing(Bottle_of_coffee::getPriceForBottle));
         int quantity = calculator.calculateHowMuchBottlesCanGetInTheVan(wallet, bottle_of_coffees);
         Van van = new Van();
         van.addBottleToTheVan(bottle_of_coffees, quantity);
-
+        System.out.println(Arrays.toString(calculator.findAllElementsWithCertainQuality(bottle_of_coffees, Coffee.QUALITY.EXCELLENT)));
     }
 }

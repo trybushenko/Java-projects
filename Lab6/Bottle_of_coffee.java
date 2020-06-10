@@ -50,4 +50,8 @@ public class Bottle_of_coffee extends Coffee {
     public double getPriceForBottle() {
         return priceForBottle;
     }
+    public QUALITY getQuality() {
+        return quality;
+    }
+
 }

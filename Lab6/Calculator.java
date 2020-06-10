@@ -20,10 +20,10 @@ public class Calculator {
         System.out.println("You can take " + count + " bottles that I counted earlier");
         return count;
     }
-    public Bottle_of_coffee[] findAllElementsWithCertainType(Bottle_of_coffee[] bottle_of_coffees, int quantity, Coffee.TYPE type) {
-        Bottle_of_coffee[] bottle_of_coffees_modified = new Bottle_of_coffee[quantity];
-        for (int i = 0; i < quantity; i++) {
-            if (bottle_of_coffees[i].getType() == type) bottle_of_coffees_modified[i] = bottle_of_coffees[i];
+    public Bottle_of_coffee[] findAllElementsWithCertainQuality(Bottle_of_coffee[] bottle_of_coffees, Coffee.QUALITY quality) {
+        Bottle_of_coffee[] bottle_of_coffees_modified = new Bottle_of_coffee[bottle_of_coffees.length];
+        for (int i = 0; i < bottle_of_coffees.length; i++) {
+            if (bottle_of_coffees[i].getQuality() == quality) bottle_of_coffees_modified[i] = bottle_of_coffees[i];
         }
         return bottle_of_coffees_modified;
     }
