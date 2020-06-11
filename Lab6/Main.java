@@ -52,11 +52,17 @@ public class Main {
                 "" + bottle_of_coffee3.getPriceForBottle());
         //adding the fourth element to the array of bottles
         GrowArray growArray = new GrowArray();
+        // adding an element to an array of bottles
         bottle_of_coffees = growArray.growArray(bottle_of_coffees, bottle_of_coffee3);
+        // sorting array of bottles by its price
         Arrays.sort(bottle_of_coffees, Comparator.comparing(Bottle_of_coffee::getPriceForBottle));
+        // calculating how many bottles can get in the van
         int quantity = calculator.calculateHowMuchBottlesCanGetInTheVan(wallet, bottle_of_coffees);
+        // creating a van
         Van van = new Van();
-        van.addBottleToTheVan(bottle_of_coffees, quantity);
-        System.out.println(Arrays.toString(calculator.findAllElementsWithCertainQuality(bottle_of_coffees, Coffee.QUALITY.EXCELLENT)));
+        // loading the van
+        Bottle_of_coffee[] loaded_van = van.addBottleToTheVan(bottle_of_coffees, quantity);
+        // finding bottles of coffee that match certain quality
+        System.out.println(Arrays.toString(calculator.findAllElementsWithCertainQuality(loaded_van, Coffee.QUALITY.EXCELLENT)));
     }
 }
