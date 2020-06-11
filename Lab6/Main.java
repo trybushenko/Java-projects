@@ -10,7 +10,7 @@ import java.util.Comparator;
 public class Main {
     public static void main(String[] args) throws Exception {
         //creating a wallet
-        Wallet wallet = new Wallet(100);
+        Wallet wallet = new Wallet(300);
         // creating the first bottle of coffee
         Bottle_of_coffee bottle_of_coffee = new Bottle_of_coffee(Coffee.TYPE.ARABICA, Coffee.QUALITY.EXCELLENT);
         //setting size of bottle

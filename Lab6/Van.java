@@ -18,6 +18,7 @@ public class Van {
             }
             else {
                 if (capacity <= 4) throw new Exception("---Van is full or try to put one more SMALL or MEDIUM bottle---");
+                else capacity -= 5;
             }
         }
         System.out.println("------LOADING PASSED SUCCESSFULLY------");
