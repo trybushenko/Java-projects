@@ -1,7 +1,6 @@
 package Lab7;
 
 import Lab6.Bottle_of_coffee;
-import Lab6.Coffee;
 
 import java.util.*;
 
@@ -56,9 +55,9 @@ public class MyList<E> implements List<Bottle_of_coffee> {
         @Override
         public Bottle_of_coffee next() {
             try {
-                Bottle_of_coffee flower = currentNode.getBottleOfCoffee();
+                Bottle_of_coffee coffee = currentNode.getBottleOfCoffee();
                 currentNode = currentNode.getNext();
-                return flower;
+                return coffee;
             } catch (NullPointerException e) {
                 throw new NoSuchElementException();
             }
@@ -103,7 +102,18 @@ public class MyList<E> implements List<Bottle_of_coffee> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+//        int length = 0, temp = 0;
+//        for (Object each: c) {
+//            length++;
+//        }
+//        for (Object each:c) {
+//            for (Bottle_of_coffee bottle_of_coffee : this) {
+//                if (each == bottle_of_coffee) {
+//                    temp++;
+//                }
+//            }
+//        }
+        return true;
     }
 
     @Override
@@ -117,7 +127,15 @@ public class MyList<E> implements List<Bottle_of_coffee> {
 
     @Override
     public boolean addAll(int index, Collection<? extends Bottle_of_coffee> c) {
-        return false;
+        if (index < 0 || index > size()) throw new IndexOutOfBoundsException();
+        for (Bottle_of_coffee bottle_of_coffee : c) {
+            if (bottle_of_coffee == null) throw new NullPointerException();
+        }
+        for (Bottle_of_coffee bottle_of_coffee : c) {
+            this.add(index, bottle_of_coffee);
+            index++;
+        }
+        return true;
     }
 
     @Override
@@ -156,10 +174,19 @@ public class MyList<E> implements List<Bottle_of_coffee> {
     @Override
     public void add(int index, Bottle_of_coffee element) {
         Node prevNode = head;
-        int counter = 0;
-        while (counter != index - 1) {
-
+        Node nextNode = null;
+        int temp = 0;
+        while (temp != index - 1) {
+            prevNode = prevNode.getNext();
+            temp++;
         }
+        for (int i = 0; i < 2; i++) {
+            nextNode = prevNode.getNext();
+        }
+        Node nodeToAdd= new Node(element, nextNode, prevNode);
+        prevNode.setNext(nodeToAdd);
+        nextNode.setPrevious(nodeToAdd);
+        size++;
     }
 
     @Override
@@ -173,13 +200,11 @@ public class MyList<E> implements List<Bottle_of_coffee> {
             currNode = head;
             head = head.getNext();
             head.setPrevious(null);
-        }
-        else if (index == size - 1) {
+        } else if (index == size - 1) {
             currNode = tail;
             tail = tail.getPrevious();
-            tail.setPrevious(null);
-        }
-        else {
+            tail.setNext(null);
+        } else {
             while (temp != index - 1) {
                 prevNode = prevNode.getNext();
                 temp++;
@@ -189,7 +214,9 @@ public class MyList<E> implements List<Bottle_of_coffee> {
             }
             currNode = prevNode.getNext();
             prevNode.setNext(nextNode);
-            nextNode.setPrevious(prevNode);
+            nextNode.setPrevious(nextNode);
+            currNode.setNext(null);
+            currNode.setPrevious(null);
             size--;
         }
         return currNode.getBottleOfCoffee();
@@ -197,19 +224,25 @@ public class MyList<E> implements List<Bottle_of_coffee> {
 
     @Override
     public int indexOf(Object o) {
-//        int temp = 0;
-//        Node currNode = head;
-//        while (currNode != o) {
-//            temp++;
-//            currNode = currNode.getNext();
-//        }
-//        return temp;
-        return 0;
+        int temp = 0;
+        Node currNode = head;
+        while (currNode != o) {
+            temp++;
+            currNode = currNode.getNext();
+        }
+        return temp;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        int temp = size - 1;
+        int lastIndex = 0;
+        if (!(o instanceof Bottle_of_coffee)) throw new ClassCastException();
+        for (int i = size - 1; i >= 0; i--) {
+            if (o == this.get(i)) lastIndex = temp;
+            temp--;
+        }
+        return lastIndex;
     }
 
     @Override
@@ -263,19 +296,9 @@ public class MyList<E> implements List<Bottle_of_coffee> {
 
     @Override
     public List<Bottle_of_coffee> subList(int fromIndex, int toIndex) {
-        return new LinkedList<>();
+        SubList sublist = new SubList((MyList<Bottle_of_coffee>) this, fromIndex, toIndex);
+        return sublist.createASubList();
     }
-//    public boolean add(Bottle_of_coffee bottle_of_coffee) {
-//        Node node = new Node(bottle_of_coffee, null, tail);
-//        if (head == null) {
-//            head = node;
-//        } else {
-//            tail.setNext(node);
-//        }
-//        tail = node;
-//        size++;
-//        return true;
-
 
     @Override
     public String toString() {
