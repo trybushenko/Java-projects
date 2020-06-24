@@ -1,6 +1,7 @@
 package Lab7;
 
 import Lab6.Bottle_of_coffee;
+import Lab6.Coffee;
 
 import java.util.*;
 
@@ -97,22 +98,23 @@ public class MyList<E> implements List<Bottle_of_coffee> {
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        int temp = 0;
+        for (Bottle_of_coffee bottle_of_coffee : this) {
+            if (bottle_of_coffee == o) this.remove(temp);
+            temp++;
+        }
+        return true;
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-//        int length = 0, temp = 0;
-//        for (Object each: c) {
-//            length++;
-//        }
-//        for (Object each:c) {
-//            for (Bottle_of_coffee bottle_of_coffee : this) {
-//                if (each == bottle_of_coffee) {
-//                    temp++;
-//                }
-//            }
-//        }
+        for (Object o : c) {
+            for (Bottle_of_coffee bottle_of_coffee : this) {
+                if (o == bottle_of_coffee) {
+                }
+                else return false;
+            }
+        }
         return true;
     }
 
@@ -140,6 +142,11 @@ public class MyList<E> implements List<Bottle_of_coffee> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
+        int length = 0;
+        for (Object o : c) {
+            this.removeIf(bottle_of_coffee -> o == bottle_of_coffee);
+            length++;
+        }
         return false;
     }
 
@@ -150,7 +157,10 @@ public class MyList<E> implements List<Bottle_of_coffee> {
 
     @Override
     public void clear() {
-
+        head = null;
+        tail = null;
+        size = 0;
+        
     }
 
     @Override
@@ -168,7 +178,7 @@ public class MyList<E> implements List<Bottle_of_coffee> {
 
     @Override
     public Bottle_of_coffee set(int index, Bottle_of_coffee element) {
-        return null;
+        return new Bottle_of_coffee(Coffee.TYPE.ARABICA, Coffee.QUALITY.BAD);
     }
 
     @Override
