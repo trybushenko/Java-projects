@@ -157,10 +157,13 @@ public class MyList<E> implements List<Bottle_of_coffee> {
 
     @Override
     public void clear() {
-        head = null;
-        tail = null;
-        size = 0;
-        
+        Node next = null;
+        while (head != null) {
+            next = head.getNext();
+            head = null;
+            head = next;
+            size--;
+        }
     }
 
     @Override

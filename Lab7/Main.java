@@ -68,15 +68,15 @@ public class Main {
             System.out.println(o);
         }
         System.out.println("cleared list --------------------------------------------------------------------------");
-//        myList1.clear();
-//        for (Object o : myList1) {
-//            System.out.println(o);
-//        }
-//        System.out.println("------------------------------------check if list is empty--------------------------------------");
-//        System.out.println(myList1.isEmpty());
-        myList1.remove(new Bottle_of_coffee(Coffee.TYPE.ARABICA, Coffee.QUALITY.BAD));
+        myList1.clear();
         for (Object o : myList1) {
             System.out.println(o);
         }
+        System.out.println("------------------------------------check if list is empty--------------------------------------");
+        System.out.println(myList1.isEmpty());
+//        myList1.remove(new Bottle_of_coffee(Coffee.TYPE.ARABICA, Coffee.QUALITY.BAD));
+//        for (Object o : myList1) {
+//            System.out.println(o);
+//        }
     }
 }
